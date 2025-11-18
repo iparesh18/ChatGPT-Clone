@@ -12,7 +12,7 @@ async function registerController(req, res) {
     } = req.body;
 
     // check if user exists
-    const existingUser = await userModel.findOne({ email});
+    const existingUser = await userModel.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
@@ -32,11 +32,11 @@ async function registerController(req, res) {
       expiresIn: "7d",
     });
 
-    // set cookie
+    // set cookie (REGISTER)
     res.cookie("token", token, {
       httpOnly: true,
       secure: true,
-      sameSite: "strict",
+      sameSite: "none",
     });
 
     return res.status(201).json({
@@ -53,26 +53,35 @@ async function registerController(req, res) {
   }
 }
 
-// login
+// Login Controller
 async function loginController(req, res) {
   const { email, password } = req.body;
+
   const user = await userModel.findOne({ email });
 
   if (!user) {
-  return res.status(400).json({ message: "Invalid credentials" });
-}
-const isPasswordValid = await bcrypt.compare(password, user.password);
+    return res.status(400).json({ message: "Invalid credentials" });
+  }
 
-if (!isPasswordValid) {
-  return res.status(400).json({ message: "Invalid credentials" });
-}
-// generate jwt token
-const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+  const isPasswordValid = await bcrypt.compare(password, user.password);
 
-res.cookie("token", token)
-res.status(200).json({ message: "Login successful" });
-}
+  if (!isPasswordValid) {
+    return res.status(400).json({ message: "Invalid credentials" });
+  }
 
+  // generate jwt token
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    expiresIn: "7d",
+  });
+
+  // FIXED COOKIE (LOGIN)
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+  });
+
+  return res.status(200).json({ message: "Login successful" });
+}
 
 module.exports = { registerController, loginController };
-

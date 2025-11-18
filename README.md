@@ -1,5 +1,6 @@
 # 🚀 ChatGPT Clone (Realtime + Web Scraping + Hybrid Memory + Socket.io)
 | REACTJS | MONGODB | NODEJS | EXPRESSJS | PINECONE | RAG | GEMINI | SOCKET.IO | REST API |
+---
 A complete **production-level ChatGPT clone** featuring:
 
 - ⚡ Real-time AI chat (Socket.io)

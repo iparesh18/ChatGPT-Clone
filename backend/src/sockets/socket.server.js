@@ -7,10 +7,11 @@ const messageModel = require("../models/message.model");
 const { createMemory, queryMemory } = require("../services/vector.service");
 const { scrapeWebsite } = require("../services/webscraper.service");
 
+
 function initSocketServer(HttpServer) {
   const io = new Server(HttpServer, {
     cors: {
-      origin: "http://chat-gpt-clone-five-green.vercel.app/",
+      origin: "https://chat-gpt-clone-five-green.vercel.app",
       methods: ["GET", "POST"],
       credentials: true,
     },

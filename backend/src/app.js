@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://chat-gpt-clone-five-green.vercel.app/",
+    origin: "https://chat-gpt-clone-five-green.vercel.app",
     credentials: true,
   })
 );

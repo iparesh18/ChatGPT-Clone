@@ -1,7 +1,5 @@
 # 🚀 ChatGPT Clone (Realtime + Web Scraping + Hybrid Memory + Socket.io)
-
-![Node](https://img.shields.io/badge/Node.js-18+-green?logo=node.js) ![Express](https://img.shields.io/badge/Express.js-Backend-black?logo=express) ![MongoDB](https://img.shields.io/badge/MongoDB-Database-green?logo=mongodb) ![Socket.io](https://img.shields.io/badge/Socket.io-Realtime-white?logo=socket.io) ![Vite](https://img.shields.io/badge/Vite-Frontend-blue?logo=vite) ![React](https://img.shields.io/badge/React.js-UI-61DAFB?logo=react) ![Gemini](https://img.shields.io/badge/Gemini_AI-2.0--Flash-blue?logo=google) ![Pinecone](https://img.shields.io/badge/Pinecone-Vector_DB-purple?logo=pinecone) ![Cheerio](https://img.shields.io/badge/Cheerio-HTML_Scraper-orange) ![Puppeteer](https://img.shields.io/badge/Puppeteer-JS_Rendering_Scraper-green) ![Render](https://img.shields.io/badge/Backend-Render-blue) ![Vercel](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)
-
+| REACTJS | MONGODB | NODEJS | EXPRESSJS | PINECONE | RAG | GEMINI | SOCKET.IO | REST API |
 A complete **production-level ChatGPT clone** featuring:
 
 - ⚡ Real-time AI chat (Socket.io)

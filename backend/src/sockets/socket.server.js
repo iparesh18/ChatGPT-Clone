@@ -9,13 +9,14 @@ const { scrapeWebsite } = require("../services/webscraper.service");
 
 
 function initSocketServer(HttpServer) {
-  const io = new Server(HttpServer, {
-    cors: {
-      origin: "https://chat-gpt-clone-five-green.vercel.app",
-      methods: ["GET", "POST"],
-      credentials: true,
-    },
-  });
+const io = new Server(HttpServer, {
+  cors: {
+    origin: "https://chat-gpt-clone-five-green.vercel.app",
+    credentials: true,
+  },
+  transports: ["websocket", "polling"],
+});
+
 
   // ============================
   // SOCKET AUTH

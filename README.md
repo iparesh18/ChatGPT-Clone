@@ -6,7 +6,7 @@ A complete **production-level ChatGPT clone** featuring:
 - ⚡ Real-time AI chat (Socket.io)
 - 🌐 Web Scraping (Cheerio + Puppeteer)
 - 🧠 Hybrid Memory (STM + LTM via Pinecone)
-- 🔐 Auth with JWT + Cookies (no re-login after refresh)
+- 🔐 Auth with JWT + Cookies 
 - ♻ Auto WebSocket reconnect + polling fallback
 - 🎨 ChatGPT-level UI/UX (almost identical)
 - 📦 Parallel optimized LLM pipeline (Promise.all)

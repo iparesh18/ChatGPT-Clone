@@ -10,7 +10,7 @@ const { scrapeWebsite } = require("../services/webscraper.service");
 function initSocketServer(HttpServer) {
   const io = new Server(HttpServer, {
     cors: {
-      origin: "http://localhost:5173",
+      origin: "http://chat-gpt-clone-five-green.vercel.app/",
       methods: ["GET", "POST"],
       credentials: true,
     },
@@ -132,34 +132,33 @@ function initSocketServer(HttpServer) {
         const ltmText = memory?.length
           ? memory.map((m) => m.metadata?.text || "").join("\n")
           : "";
-// -------------------------------------------------------------------
-// (7) MERGE LTM + SCRAPED CONTENT INTO A HIDDEN PROMPT
-// -------------------------------------------------------------------
-let hiddenContext = "";
+        // -------------------------------------------------------------------
+        // (7) MERGE LTM + SCRAPED CONTENT INTO A HIDDEN PROMPT
+        // -------------------------------------------------------------------
+        let hiddenContext = "";
 
-if (ltmText) {
-  hiddenContext += `Relevant long-term memory:\n${ltmText}\n\n`;
-}
+        if (ltmText) {
+          hiddenContext += `Relevant long-term memory:\n${ltmText}\n\n`;
+        }
 
-if (scrapedContent) {
-  hiddenContext += `Scraped website content:\n${scrapedContent}\n\n`;
-}
+        if (scrapedContent) {
+          hiddenContext += `Scraped website content:\n${scrapedContent}\n\n`;
+        }
 
-// -------------------------------------------------------------------
-// (8) CALL AI — ONLY user+model roles allowed
-// -------------------------------------------------------------------
-const response = await aiService.generateResponse([
-  ...stm,
-  {
-    role: "user",
-    parts: [
-      {
-        text: hiddenContext + "\nUser asked: " + userMessage,
-      },
-    ],
-  },
-]);
-
+        // -------------------------------------------------------------------
+        // (8) CALL AI — ONLY user+model roles allowed
+        // -------------------------------------------------------------------
+        const response = await aiService.generateResponse([
+          ...stm,
+          {
+            role: "user",
+            parts: [
+              {
+                text: hiddenContext + "\nUser asked: " + userMessage,
+              },
+            ],
+          },
+        ]);
 
         // -------------------------------------------------------------------
         // (9) Save AI response + its vector
@@ -193,7 +192,6 @@ const response = await aiService.generateResponse([
           content: response,
           chat: messagePayload.chat,
         });
-
       } catch (err) {
         console.error("AI Message Error:", err);
         socket.emit("ai-response", {
